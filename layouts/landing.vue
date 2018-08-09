@@ -1,9 +1,9 @@
 <template>
-  <div class="layout-default">
-    <div class="layout-default__content">
+  <div class="layout-landing">
+    <div class="layout-landing__content">
       <nuxt/>
     </div>
-    <div class="layout-default__footer">
+    <div class="layout-landing__footer">
       <fp-footer />
     </div>
   </div>
@@ -13,19 +13,19 @@
 export default {
 }
 </script>
-
 <style lang="scss">
 
-.layout-default {
-  background: linear-gradient($color-bg, darken($color-bg, 2));
+.layout-landing {
+  background: $color-bg;
 
   &__content {
-    max-width: $container-max-width;
-    margin: $v-spacer auto 0 auto;
-    padding: $v-spacer ($h-spacer*4);
-    box-shadow: $box-shadow;
-    background: $color-bg-page;
+    max-width: 1200px;
+    margin: 0 auto;
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
   &__footer {
@@ -40,5 +40,6 @@ export default {
     box-shadow: 0 0 5px #999;
   }
 }
+
 </style>
 

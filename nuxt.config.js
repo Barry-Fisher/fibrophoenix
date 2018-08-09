@@ -14,7 +14,7 @@ module.exports = {
       { rel: 'stylesheet', href: '//fonts.googleapis.com/css?family=Courgette|Lora:400,700' },
     ]
   },
-  plugins: ['~plugins/fp-components'],
+  plugins: ['@/plugins/fp-components'],
   /*
   ** Customize the progress bar color
   */

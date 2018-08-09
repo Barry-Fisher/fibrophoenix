@@ -1,10 +1,17 @@
 import Vue from 'vue'
-import fpCta from '@/components/fp-cta.vue'
 
-const components = {
-  'fp-cta': fpCta
+const load = (type, names) => {
+  names.forEach(name => {
+    const component = require(`@/components/${type}/${name}.vue`).default
+    Vue.component(name, component)
+  })
 }
 
-Object.keys(components).forEach(key => {
-  Vue.component(key, components[key])
-})
+load('atoms', [
+  'fp-cta',
+  'fp-logo'
+])
+
+load('organisms', [
+  'fp-footer',
+])
