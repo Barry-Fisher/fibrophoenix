@@ -8,6 +8,8 @@
       <fp-cta primary><nuxt-link to="/about/fibromyalgia">What is Fibromyalgia?</nuxt-link></fp-cta>
       <fp-cta><nuxt-link to="/about">About me</nuxt-link></fp-cta>
       <fp-cta><nuxt-link to="/resources">Resources</nuxt-link></fp-cta>
+
+      <fp-cta><nuxt-link to="/articles">Articles</nuxt-link></fp-cta>
     </div>
 
     <h2>

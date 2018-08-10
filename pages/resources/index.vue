@@ -1,18 +1,17 @@
 <template>
-  <div>
-    <h1>Resources</h1>
-    <p>
-      <ul>
-        <li>
-          <a href="https://www.google.com">Some external link</a>
-        </li>
-        <li>
-          <a href="https://www.google.com">Some external link</a>
-        </li>
-        <li>
-          <a href="https://www.google.com">Some external link</a>
-        </li>
-      </ul>
-    </p>
+  <div v-html="content">
   </div>
 </template>
+
+<script>
+
+export default {
+  async asyncData({ app, route }) {
+    const markdown = await app.$getMarkdown(`resources.md`)
+    return {
+      content: markdown.content,
+      data: markdown.data
+    }
+  },
+}
+</script>

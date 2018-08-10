@@ -14,7 +14,22 @@ module.exports = {
       { rel: 'stylesheet', href: '//fonts.googleapis.com/css?family=Courgette|Lora:400,700' },
     ]
   },
-  plugins: ['@/plugins/fp-components'],
+  plugins: [
+    '@/plugins/fp-components',
+    '@/plugins/articles'
+  ],
+  modules: [
+    '@nuxtjs/axios'
+  ],
+  router: {
+    middleware: [
+      'validPath'
+    ]
+  },
+  serverMiddleware: [
+    { path: '/api/content', handler: '@/api/contentLoader.js' },
+    { path: '/api/articles-data', handler: '@/api/articlesData.js' },
+  ],
   /*
   ** Customize the progress bar color
   */
