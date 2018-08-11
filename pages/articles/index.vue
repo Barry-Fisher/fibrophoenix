@@ -2,10 +2,10 @@
   <div class="articles">
     <h1>Articles</h1>
 
-    <div v-for="(article, slug) in articlesData" :key="slug" class="articles-cards">
+    <div v-for="(article, index) in allArticles" :key="index" class="articles-cards">
       <div v-if="article.data.title" class="articles-card">
         <div>
-          Title: <nuxt-link :to="`/articles/${slug}`">{{ article.data.title }}</nuxt-link>
+          Title: <nuxt-link :to="article.path">{{ article.data.title }}</nuxt-link>
         </div>
         <div>
           Summary: {{ article.data.summary }}
@@ -18,10 +18,10 @@
 
 <script>
   export default {
-    asyncData({ app }) {
-      const articlesData = app.$getArticles()
+    async asyncData({ app }) {
+      const allArticles = await app.$content.getCollectionData('articles')
       return {
-        articlesData
+        allArticles
       }
     }
   }

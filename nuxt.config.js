@@ -16,19 +16,19 @@ module.exports = {
   },
   plugins: [
     '@/plugins/fp-components',
-    '@/plugins/articles'
+    '@/plugins/content'
   ],
   modules: [
     '@nuxtjs/axios'
   ],
   router: {
     middleware: [
-      'validPath'
+      'validPaths'
     ]
   },
   serverMiddleware: [
-    { path: '/api/content', handler: '@/api/contentLoader.js' },
-    { path: '/api/articles-data', handler: '@/api/articlesData.js' },
+    { path: '/api/content', handler: '@/src/content/api/contentLoader.js' },
+    { path: '/api/collection-data', handler: '@/src/content/api/collectionData.js' },
   ],
   /*
   ** Customize the progress bar color

@@ -7,7 +7,7 @@
 
 export default {
   async asyncData({ app, route }) {
-    const markdown = await app.$getMarkdown(`about/fibromyalgia.md`)
+    const markdown = await app.$content.getMarkdown(`about/fibromyalgia.md`)
     return {
       content: markdown.content,
       data: markdown.data
