@@ -89,5 +89,44 @@ Content.prototype.getCollectionData = function (collectionName) {
     }).catch(error => console.error(error))
   }
 }
+
+Content.prototype.extractCollectionDataProperties = function (collection, dataKeys) {
+  if (!Array.isArray(collection)) {
+    return new TypeError('collection must be an array')
+  }
+  if (!Array.isArray(dataKeys)) {
+    return new TypeError('dataKeys must be an array')
+  }
+
+  const result = {}
+
+  dataKeys.forEach(dataKey => {
+    result[dataKey] = collection.reduce((acc, item) => {
+      // Array of properties.
+      if (Array.isArray(item.data[dataKey])) {
+        item.data[dataKey].forEach(property => {
+          if (!acc.includes(property)) {
+            acc.push(property)
+          }
+        })
+        return acc
+      }
+      // Single property string.
+      const property = item.data[dataKey]
+      if (typeof property === 'string') {
+        if (!acc.includes(property)) {
+          acc.push(property)
+        }
+        return acc
+      }
+
+      return acc
+
+    }, [])
+  })
+
+  return result
+}
+
 const content = new Content()
 module.exports = content

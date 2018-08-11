@@ -3,11 +3,11 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'fibro-phoenix',
+    title: 'Fibro Phoenix - Fibromyalgia information and resources',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Fibro Phoenix website' }
+      { hid: 'description', name: 'description', content: 'Fibromyalgia information and resources' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
