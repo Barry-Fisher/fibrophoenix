@@ -63,15 +63,22 @@ Content.prototype.getCollectionData = function (collectionName) {
       const matter = require('gray-matter')
 
       const collectionFiles = glob.sync(path.resolve('content', collectionName) + '/**/*md').reduce((acc, file) => {
-        const slug = path.basename(file, '.md')
-        const rawContent = fs.readFileSync(file, 'utf8')
-
         const contentDir = path.resolve('content')
+        const rawContent = fs.readFileSync(file, 'utf8')
+        const fileStats = fs.statSync(file)
+        const updated = new Date(fileStats.mtimeMs)
+
+        const getMonth = month => {
+          month++
+          return month < 10 ? `0${month}` : month
+        }
+        var updatedYMD = updated.getFullYear() + "-" + getMonth(updated.getMonth()) + "-" + updated.getDate()
 
         acc.push({
           file,
           path: file.replace(contentDir, '').replace('.md', ''),
-          data: matter(rawContent).data
+          data: matter(rawContent).data,
+          updated: updatedYMD
         })
         return acc
       }, [])

@@ -1,3 +1,5 @@
+const Content = require('./src/content')
+
 module.exports = {
   /*
   ** Headers of the page
@@ -19,7 +21,8 @@ module.exports = {
     '@/plugins/content'
   ],
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/sitemap'
   ],
   router: {
     middleware: [
@@ -30,10 +33,32 @@ module.exports = {
     { path: '/api/content', handler: '@/src/content/api/contentLoader.js' },
     { path: '/api/collection-data', handler: '@/src/content/api/collectionData.js' },
   ],
+  sitemap: {
+    path: '/sitemap.xml',
+    cacheTime: 1000 * 60 * 15,
+    gzip: true,
+    generate: false, // Enable me when using nuxt generate
+    exclude: [
+      '/patterns',
+      '/api/**'
+    ],
+    routes () {
+      const dynamicRoutes = []
+      const articles = Content.getCollectionData('articles')
+      console.log(articles)
+      const paths = articles.forEach(article => {
+        dynamicRoutes.push({
+          url: article.path,
+          lastmodISO: article.updated
+        })
+      })
+      return dynamicRoutes
+    }
+  },
   /*
   ** Customize the progress bar color
   */
-  loading: { color: '#3B8070' },
+  loading: { color: '#f54c00' },
   /*
   ** Build configuration
   */
