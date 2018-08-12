@@ -13,7 +13,9 @@
 <script>
 export default {
   mounted () {
-    window.addEventListener('scroll', e => {
+    const debounce = require('lodash.debounce')
+
+    window.addEventListener('scroll', debounce(() => {
       const position = document.documentElement.scrollTop
       const topNavElement = document.querySelector('.fp-top-nav')
       const condensed = 'fp-top-nav--condensed'
@@ -27,7 +29,8 @@ export default {
           topNavElement.classList.remove(condensed)
         }
       }
-    })
+    }, 250))
+
   }
 }
 </script>
