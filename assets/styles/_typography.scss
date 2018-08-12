@@ -1,0 +1,48 @@
+h1, h2 {
+  font-family: unquote($cursive-font);
+  font-weight: normal;
+  color: $color-grey;
+  letter-spacing: 1px;
+  margin: ($v-spacer*2) 0 $v-spacer 0;
+}
+
+h3, h4, h5, h6 {
+  font-family: unquote($text-font);
+  font-weight: 700;
+  color: $color-grey;
+  margin: ($v-spacer*2) 0 $v-spacer 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+h4 {
+  font-size: 1.6rem;
+}
+
+h5 {
+  font-size: 1.4rem;
+}
+
+h6 {
+  font-size: 1.2rem;
+}
+
+p {
+  margin-top: $v-spacer;
+  margin-bottom: $v-spacer;
+  text-align: justify;
+}
+
+a {
+  color: $color-primary;
+}

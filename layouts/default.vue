@@ -1,5 +1,8 @@
 <template>
   <div class="layout-default">
+    <div class="layout-default__top-nav">
+      <fp-top-nav />
+    </div>
     <div class="layout-default__content">
       <nuxt/>
     </div>
@@ -11,6 +14,7 @@
 
 <script>
 export default {
+
 }
 </script>
 
@@ -18,6 +22,11 @@ export default {
 
 .layout-default {
   background: linear-gradient($color-bg, darken($color-bg, 2));
+
+  &__top-nav {
+    position: sticky;
+    top: 0;
+  }
 
   &__content {
     max-width: $container-max-width;

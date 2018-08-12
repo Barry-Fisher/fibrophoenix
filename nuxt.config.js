@@ -45,7 +45,6 @@ module.exports = {
     routes () {
       const dynamicRoutes = []
       const articles = Content.getCollectionData('articles')
-      console.log(articles)
       const paths = articles.forEach(article => {
         dynamicRoutes.push({
           url: article.path,
@@ -64,7 +63,7 @@ module.exports = {
   */
   build: {
     styleResources: {
-      scss: './assets/variables.scss'
+      scss: './assets/styles/fp.scss'
     },
     /*
     ** Run ESLint on save

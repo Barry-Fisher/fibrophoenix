@@ -9,10 +9,14 @@ const load = (type, names) => {
 
 load('atoms', [
   'fp-cta',
-  'fp-logo',
-  'fp-content-loader'
+  'fp-logo'
+])
+
+load('molecules', [
+  'fp-nav-links'
 ])
 
 load('organisms', [
   'fp-footer',
+  'fp-top-nav'
 ])
