@@ -17,12 +17,12 @@ module.exports = {
     ]
   },
   plugins: [
-    '@/plugins/fp-components',
     '@/plugins/content'
   ],
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    ['./modules/globalComponents', { prefix: 'fp-' }]
   ],
   router: {
     middleware: [
