@@ -12,7 +12,7 @@ module.exports = function globalComponents (moduleOptions) {
 
   if (Object.keys(components).length > 0) {
     this.addPlugin({
-      src: path.resolve(__dirname, 'globalComponentsPlugin.js'),
+      src: path.resolve(__dirname, 'pluginTemplate.js'),
       options: {
         components
       }

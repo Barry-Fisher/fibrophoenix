@@ -32,7 +32,13 @@ module.exports = {
   serverMiddleware: [
     { path: '/api/content', handler: '@/src/content/api/contentLoader.js' },
     { path: '/api/collection-data', handler: '@/src/content/api/collectionData.js' },
+    '@/src/content/api/imageLoader.js',
   ],
+  imageStyles: {
+    small: {
+      options: {}
+    }
+  },
   sitemap: {
     path: '/sitemap.xml',
     cacheTime: 1000 * 60 * 15,

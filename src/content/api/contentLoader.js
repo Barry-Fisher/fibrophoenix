@@ -1,7 +1,8 @@
 module.exports = function (req, res, next) {
-  const requestExtension = req.url.substring(req.url.length-2, req.url.length)
+  const path = require('path')
+  const requestExtension = path.extname(req.url)
 
-  if (requestExtension !== 'md') {
+  if (requestExtension !== '.md') {
     return next()
   }
 

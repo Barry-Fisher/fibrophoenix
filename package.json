@@ -19,6 +19,7 @@
     "gray-matter": "^4.0.1",
     "lodash.debounce": "^4.0.8",
     "markdown-it": "^8.4.2",
+    "mkdirp": "^0.5.1",
     "node-cache": "^4.2.0",
     "node-sass": "^4.9.2",
     "nuxt": "^1.0.0",
