@@ -48,6 +48,12 @@ const imageLoaderFactory = (options) => function (req, res, next) {
       return res.end(fileContent)
     }
 
+    const respondWithError = (error) => {
+      console.error(error)
+      res.writeHead(500)
+      return res.end(error.message)
+    }
+
     const imageStyles = options.imageStyles || {}
 
     if (query.style && Object.keys(imageStyles).includes(query.style)) {
@@ -61,7 +67,6 @@ const imageLoaderFactory = (options) => function (req, res, next) {
         mkdirp.sync(styleDir)
       }
 
-      // Copy file.
       const sourceBasename = path.basename(url, requestExtension)
       const targetFile = `${sourceBasename}--${query.style}${requestExtension}`
       const targetPath = path.join(styleDir, targetFile)
@@ -71,11 +76,29 @@ const imageLoaderFactory = (options) => function (req, res, next) {
         return respondWithFile(targetPath)
       }
 
-      // @todo imagemagick apply style
-      fs.copyFileSync(filePath, targetPath)
+      const gm = require('gm')
+      const style = imageStyles[query.style]
+
+      if (!style.actions || !Array.isArray(style.actions)) {
+        return respondWithError(new Error(`Image style actions should be an array`))
+      }
+
+      const process = gm(filePath)
+
+      style.actions.forEach(actionArguments => {
+        actionArguments = actionArguments.split('|')
+        const action = actionArguments.shift()
+        process[action].apply(process, actionArguments)
+      })
+
+      return process.write(targetPath, function (error) {
+        if (!error) {
+          return respondWithFile(targetPath)
+        }
+        return respondWithError(error)
+      });
 
       // Respond with new file.
-      return respondWithFile(targetPath)
     }
 
     // Respond with source file.

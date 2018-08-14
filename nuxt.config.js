@@ -20,10 +20,12 @@ module.exports = {
     ['./modules/globalComponents', { prefix: 'fp-' }],
     './modules/contentLoader',
     ['./modules/imageLoader', {
+      // See: http://aheckmann.github.io/gm/docs.html for available actions.
       imageStyles: {
-        small: {
-          options: {}
-        }
+        //⇓style name      ⇓action|⇓[arg1|arg2|...]
+        small: { actions: ['gravity|Center', 'resize|160|90^', 'extent|160|90|+0|+45'] },
+        medium: { actions: ['gravity|Center', 'resize|320|180^', 'extent|320|180|+0|+90'] },
+        large: { actions: ['gravity|Center', 'resize|640|360^', 'extent|640|360|+0|+180'] },
       },
     }]
   ],
