@@ -1,4 +1,5 @@
 const Content = require('./src/content')
+const ImageLoader = require('./src/content/api/imageLoader.js')
 
 module.exports = {
   /*
@@ -22,7 +23,9 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/sitemap',
-    ['./modules/globalComponents', { prefix: 'fp-' }]
+    ['./modules/globalComponents', { prefix: 'fp-' }],
+    // @todo define api content as a module (with options) which also provide validPaths plugin automatically.
+    // @todo define imageLoader as a module (with options - e.g. imageStyles definitions)
   ],
   router: {
     middleware: [
@@ -32,7 +35,13 @@ module.exports = {
   serverMiddleware: [
     { path: '/api/content', handler: '@/src/content/api/contentLoader.js' },
     { path: '/api/collection-data', handler: '@/src/content/api/collectionData.js' },
-    '@/src/content/api/imageLoader.js',
+    ImageLoader({
+      imageStyles: {
+        small: {
+          options: {}
+        }
+      }
+    })
   ],
   imageStyles: {
     small: {
