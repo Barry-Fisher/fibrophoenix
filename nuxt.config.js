@@ -1,6 +1,3 @@
-const Content = require('./src/content')
-const ImageLoader = require('./src/content/api/imageLoader.js')
-
 module.exports = {
   /*
   ** Headers of the page
@@ -17,42 +14,24 @@ module.exports = {
       { rel: 'stylesheet', href: '//fonts.googleapis.com/css?family=Courgette|Lora:400,700' },
     ]
   },
-  plugins: [
-    '@/plugins/content'
-  ],
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/sitemap',
     ['./modules/globalComponents', { prefix: 'fp-' }],
-    // @todo define api content as a module (with options) which also provide validPaths plugin automatically.
-    // @todo define imageLoader as a module (with options - e.g. imageStyles definitions)
-  ],
-  router: {
-    middleware: [
-      'validPaths'
-    ]
-  },
-  serverMiddleware: [
-    { path: '/api/content', handler: '@/src/content/api/contentLoader.js' },
-    { path: '/api/collection-data', handler: '@/src/content/api/collectionData.js' },
-    ImageLoader({
+    './modules/contentLoader',
+    ['./modules/imageLoader', {
       imageStyles: {
         small: {
           options: {}
         }
-      }
-    })
+      },
+    }]
   ],
-  imageStyles: {
-    small: {
-      options: {}
-    }
-  },
   sitemap: {
     path: '/sitemap.xml',
     cacheTime: 1000 * 60 * 15,
     gzip: true,
-    generate: false, // Enable me when using nuxt generate
+    generate: false, // Enable when using nuxt generate
     exclude: [
       '/patterns',
       '/api/**'
@@ -70,7 +49,7 @@ module.exports = {
     }
   },
   /*
-  ** Customize the progress bar color
+  ** Progress bar color
   */
   loading: { color: '#f54c00' },
   /*

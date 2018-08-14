@@ -1,4 +1,4 @@
-const Content = function () {
+const ContentLoader = function () {
   const NodeCache = require('node-cache')
   this.getMarkdownCache = new NodeCache({ stdTTL: 60, checkperiod: 65 })
   this.getCollectionDataCache = new NodeCache({ stdTTL: 60, checkperiod: 65 })
@@ -9,7 +9,7 @@ const stripLeadingSlashes = function (input) {
   return input[0] === '/' ? input.substring(1) : input
 }
 
-Content.prototype.getMarkdown = function (contentPath) {
+ContentLoader.prototype.getMarkdown = function (contentPath) {
   contentPath = stripLeadingSlashes(contentPath)
 
   if (typeof process.server === 'undefined' || process.server) {
@@ -48,7 +48,7 @@ Content.prototype.getMarkdown = function (contentPath) {
   }
 }
 
-Content.prototype.getCollectionData = function (collectionName) {
+ContentLoader.prototype.getCollectionData = function (collectionName) {
   collectionName = stripLeadingSlashes(collectionName)
 
   if (typeof process.server === 'undefined' || process.server) {
@@ -97,7 +97,7 @@ Content.prototype.getCollectionData = function (collectionName) {
   }
 }
 
-Content.prototype.extractCollectionDataProperties = function (collection, dataKeys) {
+ContentLoader.prototype.extractCollectionDataProperties = function (collection, dataKeys) {
   if (!Array.isArray(collection)) {
     return new TypeError('collection must be an array')
   }
@@ -135,5 +135,6 @@ Content.prototype.extractCollectionDataProperties = function (collection, dataKe
   return result
 }
 
-const content = new Content()
-module.exports = content
+const contentLoader = new ContentLoader()
+
+module.exports = contentLoader
