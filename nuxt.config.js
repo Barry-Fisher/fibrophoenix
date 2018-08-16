@@ -22,10 +22,10 @@ module.exports = {
     ['./modules/imageLoader', {
       // See: http://aheckmann.github.io/gm/docs.html for available actions.
       imageStyles: {
-        //⇓style name      ⇓action|⇓[arg1|arg2|...]
-        small: { actions: ['gravity|Center', 'resize|160|90^', 'extent|160|90|+0|+45'] },
-        medium: { actions: ['gravity|Center', 'resize|320|180^', 'extent|320|180|+0|+90'] },
-        large: { actions: ['gravity|Center', 'resize|640|360^', 'extent|640|360|+0|+180'] },
+        //thumbnail: { actions: ['gravity|Center', 'resize|320|180^', 'extent|320|180|+0|+90'] },
+        small: { macros: ['scaleAndCrop|160|90'] },
+        medium: { macros: ['scaleAndCrop|320|180'] },
+        large: { macros: ['scaleAndCrop|640|360'] },
       },
     }]
   ],
