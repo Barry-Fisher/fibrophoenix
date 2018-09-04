@@ -21,7 +21,10 @@ ContentLoader.prototype.getMarkdown = function (contentPath) {
       const fs = require('fs')
       const path = require('path')
       const md = require('markdown-it')
-      const mdInstance = new md()
+      const mdInstance = new md({
+        html: true,
+        typographer: true
+      })
       const matter = require('gray-matter')
       const file = path.resolve(`content/${contentPath}`)
       if (fs.existsSync(file)) {
