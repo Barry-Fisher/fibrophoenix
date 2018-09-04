@@ -1,3 +1,5 @@
+const Content = require('./modules/contentLoader/contentLoader')
+
 module.exports = {
   /*
   ** Headers of the page
@@ -19,10 +21,8 @@ module.exports = {
     '@nuxtjs/sitemap',
     ['./modules/globalComponents', { prefix: 'fp-' }],
     './modules/contentLoader',
-    ['./modules/imageLoader', {
-      // See: http://aheckmann.github.io/gm/docs.html for available actions.
+    ['@reallifedigital/nuxt-image-loader-module', {
       imageStyles: {
-        //thumbnail: { actions: ['gravity|Center', 'resize|320|180^', 'extent|320|180|+0|+90'] },
         small: { macros: ['scaleAndCrop|160|90'] },
         medium: { macros: ['scaleAndCrop|320|180'] },
         large: { macros: ['scaleAndCrop|640|360'] },
